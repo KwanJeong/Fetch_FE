@@ -1,13 +1,12 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from '../contexts/AuthContext';
 import DogsMatchContext from "../contexts/DogsMatchContext";
 
-function Layout({ children }) { // Add children as a prop here
-    const [isLoggedIn, setIsLoggedIn] = useContext(AuthContext);
-    // const [matchedDogs, setMatchedDogs] = useState([]);
+function Layout({ children }) { 
+    const [isLoggedIn] = useContext(AuthContext);
 
     const [matchedDogs, setMatchedDogs] = useState(() => {
         const savedDogs = localStorage.getItem('matchedDogs');

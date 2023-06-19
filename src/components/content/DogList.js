@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import Select, { components } from 'react-select';
 import { FormCheck } from 'react-bootstrap';
@@ -44,7 +44,7 @@ const DogList = () => {
     const [totalNumberPages, setTotalNumberPages] = useState(0);
 
 
-    const fetchDogData = async (relativeUrl) => {
+    const fetchDogData = useCallback(async (relativeUrl) => {
         try {
             const baseUrl = "https://frontend-take-home-service.fetch.com";
             const fullUrl = baseUrl + relativeUrl;
@@ -97,7 +97,7 @@ const DogList = () => {
         } catch (err) {
             console.error(err);
         }
-    };
+    },[setIsLoggedIn, navigate, size]);
 
 
     useEffect(() => {
@@ -118,8 +118,8 @@ const DogList = () => {
         };
         fetchBreeds();
         fetchDogData(`/dogs/search?sort=breed:${sort}`);
-        console.log(matchedDogs);
-    }, []);
+        // console.log(matchedDogs);
+    }, [fetchDogData, matchedDogs, sort]);
 
     const markMatch = (dogID) => {
         setMatchedDogs([
