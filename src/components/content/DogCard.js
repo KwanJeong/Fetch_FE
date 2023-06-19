@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 import DogsMatchContext from '../contexts/DogsMatchContext';
 
 const DogCard = (props) => {
 
-    const [matchedDogs, setMatchedDogs] = useContext(DogsMatchContext);
+    const [matchedDogs] = useContext(DogsMatchContext);
 
     //const isMatched = matchedDogs.some((dog) => dog.id === props.id);
     const isMatched = matchedDogs.some((song) => song.id === props.id);
