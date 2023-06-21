@@ -40,7 +40,7 @@ function App() {
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/error" element={<ErrorPage />} />
                     </Routes>
-                </Layout>ㄹ
+                </Layout>
             </BrowserRouter>
         </AuthContext.Provider>
     );

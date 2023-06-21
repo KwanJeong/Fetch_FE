@@ -6,7 +6,6 @@ import AuthContext from '../contexts/AuthContext';
 import DogsMatchContext from "../contexts/DogsMatchContext";
 
 function Layout({ children }) { 
-    const [isLoggedIn] = useContext(AuthContext);
     const [isLoggedIn, setIsLoggedIn] = useContext(AuthContext);
 
     const [matchedDogs, setMatchedDogs] = useState(() => {
