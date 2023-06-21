@@ -35,6 +35,7 @@ export default function Login() {
 
             // If the login was successful
             if (response.status === 200) {
+                localStorage.setItem('isLoggedIn', true);
                 setIsLoggedIn(true);
                 alert("Login successful!");
                 navigate("/")
