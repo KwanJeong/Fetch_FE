@@ -5,18 +5,22 @@ import DogsMatchContext from '../contexts/DogsMatchContext';
 
 const DogsMatch = () => {
 
+    // Retrieve the matched dogs array and a function to update it from the DogsMatchContext
     const [matchedDogs, setMatchedDogs] = useContext(DogsMatchContext);
 
+    // Create a state variable 'dogs' initialized with the matched dogs array
     const [dogs] = useState(matchedDogs);
 
-
+    // Function to mark a dog as a match
     const markMatch = (dogID) => {
+         // Update the matched dogs array with the new match by finding the dog with the given ID
         setMatchedDogs([
             ...matchedDogs,
             dogs.find((dogs) => dogs.id === dogID),
         ]);
     };
 
+    // Function to mark a dog as unmatched
     const markUnmatch = (dogID) => {
         setMatchedDogs((prevMatch) => prevMatch.filter((dog) => dog.id !== dogID));
     };

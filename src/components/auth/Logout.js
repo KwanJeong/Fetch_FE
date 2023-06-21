@@ -15,9 +15,10 @@ export default function Logout() {
                 });
                 
                 if(response.status === 401) {
-                    // navigate to login page, show an error message, etc.
+                    // If the user is not authenticated, navigate to the login page
                     navigate("/login");
                 } else if(response.ok) {
+                    // If the logout was successful, update the authentication state
                     setIsLoggedIn(false);
                 } 
             } catch (err) {
@@ -25,7 +26,7 @@ export default function Logout() {
                 console.error(err);
             }
         }
-
+        // Call the logout function when the component mounts
         logout();
     }, [navigate, setIsLoggedIn]);
 

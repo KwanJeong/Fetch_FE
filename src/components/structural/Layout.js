@@ -6,9 +6,14 @@ import AuthContext from '../contexts/AuthContext';
 import DogsMatchContext from "../contexts/DogsMatchContext";
 
 function Layout({ children }) { 
+<<<<<<< HEAD
     const [isLoggedIn] = useContext(AuthContext);
+=======
+    const [isLoggedIn, setIsLoggedIn] = useContext(AuthContext);
+>>>>>>> 43e26a1 (add some comments)
 
     const [matchedDogs, setMatchedDogs] = useState(() => {
+        // Retrieve matched dogs from localStorage if it exists
         const savedDogs = localStorage.getItem('matchedDogs');
         if (savedDogs !== null) {
             return JSON.parse(savedDogs);
@@ -18,6 +23,7 @@ function Layout({ children }) {
     });
 
     useEffect(() => {
+        // Save matched dogs to localStorage whenever it changes
         localStorage.setItem('matchedDogs', JSON.stringify(matchedDogs));
     }, [matchedDogs]);
 

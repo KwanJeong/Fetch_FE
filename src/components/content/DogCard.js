@@ -5,14 +5,18 @@ import DogsMatchContext from '../contexts/DogsMatchContext';
 
 const DogCard = (props) => {
 
+    // Get the matched dogs from the context
     const [matchedDogs] = useContext(DogsMatchContext);
 
-    //const isMatched = matchedDogs.some((dog) => dog.id === props.id);
+    // Check if the current dog is already matched
     const isMatched = matchedDogs.some((song) => song.id === props.id);
 
+    // Function to add the dog to the match
     const addtoMatch = () => {
         props.markMatch(props.id)
     }
+
+    // Function to remove the dog from the match
     const removeFromMatch = () => {
         props.markUnmatch(props.id)
     }

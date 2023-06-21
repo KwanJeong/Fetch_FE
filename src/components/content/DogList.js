@@ -9,6 +9,8 @@ import DogCard from './DogCard';
 import Pagination from './Pagination';
 import DogsMatchContext from '../contexts/DogsMatchContext';
 
+
+// This component is used to render a custom option in the select dropdown
 const Option = (props) => {
     return (
         <div>
@@ -24,11 +26,16 @@ const Option = (props) => {
     );
 };
 
+// This component fetches data about dogs, renders a list of them, 
+// and provides functionalities like sorting, pagination, and search
 const DogList = () => {
 
+    // State management for different values used across the component
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useContext(AuthContext);
+
+    // ... more state variables ...
     const [dogs, setDogs] = useState([]);
     const [matchedDogs, setMatchedDogs] = useContext(DogsMatchContext);
     const [breeds, setBreeds] = useState([]);
@@ -43,8 +50,13 @@ const DogList = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [totalNumberPages, setTotalNumberPages] = useState(0);
 
+<<<<<<< HEAD
 
     const fetchDogData = useCallback(async (relativeUrl) => {
+=======
+    // Fetches dog data from the given URL
+    const fetchDogData = async (relativeUrl) => {
+>>>>>>> 43e26a1 (add some comments)
         try {
             const baseUrl = "https://frontend-take-home-service.fetch.com";
             const fullUrl = baseUrl + relativeUrl;
@@ -99,12 +111,12 @@ const DogList = () => {
         }
     },[setIsLoggedIn, navigate, size]);
 
-
+    // Updates isLoading when dogs state changes
     useEffect(() => {
         setIsLoading(false);
     }, [dogs]);
 
-
+    // On component mount, fetches breeds and initial dog data
     useEffect(() => {
         const fetchBreeds = async () => {
             try {
@@ -121,6 +133,7 @@ const DogList = () => {
         // console.log(matchedDogs);
     }, [fetchDogData, matchedDogs, sort]);
 
+    // Handles marking a dog as a match
     const markMatch = (dogID) => {
         setMatchedDogs([
             ...matchedDogs,
@@ -128,10 +141,12 @@ const DogList = () => {
         ]);
     };
 
+    // Handles removing a dog from matches
     const markUnmatch = (dogID) => {
         setMatchedDogs((prevMatch) => prevMatch.filter((dog) => dog.id !== dogID));
     };
 
+    // Constructs the URL for fetching dog data based on state variables
     const constructUrl = (from) => {
         let url = `/dogs/search?`;
 
@@ -158,6 +173,7 @@ const DogList = () => {
         return url;
     }
 
+    // Handles the search functionality
     const handleSearch = () => {
         setIsLoading(true);
         const url = constructUrl();
@@ -165,6 +181,7 @@ const DogList = () => {
         fetchDogData(url);
     };
 
+    // Handles pagination
     const handlePageNavigation = (pageNumber) => {
         const from = (pageNumber - 1) * size;
         const url = constructUrl(from);
@@ -172,6 +189,7 @@ const DogList = () => {
         setPageNumber(pageNumber);
     };
 
+    // Resets the search parameters to their defaults
     const resetSearch = () => {
         setZipCodeFilter([]);
         setBreedFilter("")
@@ -185,9 +203,7 @@ const DogList = () => {
         fetchDogData(`/dogs/search?sort=breed:asc`);
     }
 
-
-
-
+    // Renders the search form, total results, list of dogs, and pagination
     return (
         <div>
             <Form>
