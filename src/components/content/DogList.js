@@ -50,13 +50,10 @@ const DogList = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [totalNumberPages, setTotalNumberPages] = useState(0);
 
-<<<<<<< HEAD
+
 
     const fetchDogData = useCallback(async (relativeUrl) => {
-=======
-    // Fetches dog data from the given URL
-    const fetchDogData = async (relativeUrl) => {
->>>>>>> 43e26a1 (add some comments)
+    
         try {
             const baseUrl = "https://frontend-take-home-service.fetch.com";
             const fullUrl = baseUrl + relativeUrl;

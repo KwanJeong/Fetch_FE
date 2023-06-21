@@ -6,11 +6,8 @@ import AuthContext from '../contexts/AuthContext';
 import DogsMatchContext from "../contexts/DogsMatchContext";
 
 function Layout({ children }) { 
-<<<<<<< HEAD
     const [isLoggedIn] = useContext(AuthContext);
-=======
     const [isLoggedIn, setIsLoggedIn] = useContext(AuthContext);
->>>>>>> 43e26a1 (add some comments)
 
     const [matchedDogs, setMatchedDogs] = useState(() => {
         // Retrieve matched dogs from localStorage if it exists
